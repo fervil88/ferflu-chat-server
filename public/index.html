@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socket Server</title>
+  </head>
+  <body>
+    <h1>Access denied</h1>
+    <script src="socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      socket.on('connected', function () {
+        console.log('Connected to the server');
+      });
+
+      socket.on('disconnected', function () {
+        console.log('Disonnected to the server');
+      });
+
+      socket.emit('message', { name: 'Fer' });
+
+      socket.on('emit-message', function (payload) {
+        console.log('Message from server', payload);
+      });
+
+      socket.on('active-bands', function (payload) {
+        console.clear();
+        console.table(payload);
+      });
+    </script>
+  </body>
+</html>
