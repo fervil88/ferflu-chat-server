@@ -11,7 +11,7 @@ const createUser = async (req, res = response) => {
     if (isEmailExist) {
       return res.status(400).json({
         ok: false,
-        body: 'Email already exist',
+        msg: 'Email already exist',
       });
     }
 
@@ -33,7 +33,7 @@ const createUser = async (req, res = response) => {
     console.log(error);
     res.status(500).json({
       ok: false,
-      body: 'Contact customer support',
+      msg: 'Contact customer support',
     });
   }
 };
@@ -78,7 +78,7 @@ const renewToken = async (req, res = response) => {
   const userDb = await User.findById(uid);
   res.json({
     ok: true,
-    userDb,
+    user: userDb,
     token,
   });
 };
